@@ -5,13 +5,14 @@ const Coupon = require('../models/couponModel');
 const Order = require('../models/orderModel');
 
 const asyncHandler = require('express-async-handler')
+const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
+const uniqid = require('uniqid');
+
 const { generateToken }= require('../config/jwtToken');
 const validateMongodbId = require('../utils/validateMongodbId');
 const { generateRefreshToken } = require('../config/refreshToken');
-const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
 const sendEmail = require('./emailController');
-const uniqid = require('uniqid');
 
 // create user / register
 const createUser = asyncHandler(async (req, res) => {
